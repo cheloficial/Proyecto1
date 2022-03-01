@@ -10,36 +10,36 @@ package proyecto1;
  * @author Marcel
  */
 public class NodoUsuario {
-    private Object ID;
-    private Object usuario;
+    private String ID;
+    private String usuario;
     private NodoUsuario pNext;
     
-    public NodoUsuario(Object ID, Object usuario){
+    public NodoUsuario(String ID, String usuario){
         this.ID = ID; //lo que voy a guardar
         this.usuario = usuario; //lo que voy a guardar
         this.pNext = null; // por ahora apunta al vacio
         
        
     }
-    public NodoUsuario(Object ID, Object usuario, NodoUsuario nodito){ //lo que quiero guardar y se donde guardarlo
+    public NodoUsuario(String ID, String usuario, NodoUsuario nodito){ //lo que quiero guardar y se donde guardarlo
         this.ID = ID;
         this.usuario = usuario;
         this.pNext = nodito; //apunta a otra caja
     }
 
-    public Object getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(Object ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
-    public Object getUsuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Object usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 

@@ -11,43 +11,36 @@ import javax.swing.JOptionPane;
  *
  * @author Marcel
  */
-public class ListaUsuario {
-    
-    private NodoUsuario pFirst;
-    private NodoUsuario pLast;
+public class ListaRelacion {
+    private NodoRelacion pFirst;
+    private NodoRelacion pLast;
     private int size;
 
-    
-//constructor de lista de la lista con sus variables respectivas insert code construccion    
-    public ListaUsuario(NodoUsuario pFirst, NodoUsuario pLast, int size) {
+    public ListaRelacion(NodoRelacion pFirst, NodoRelacion pLast, int size) {
         this.pFirst = pFirst;
         this.pLast = pLast;
         this.size = size;
     }
-
-//pero necesito incializar asi    
-    public ListaUsuario() {
+    
+    public ListaRelacion() {
         this.pFirst = null;
         this.pLast = null;
         this.size = 0;
     }
-    
-    
-    
-//Getters y Setters Right click inster code
-    public NodoUsuario getpFirst() {
+
+    public NodoRelacion getpFirst() {
         return pFirst;
     }
 
-    public void setpFirst(NodoUsuario pFirst) {
+    public void setpFirst(NodoRelacion pFirst) {
         this.pFirst = pFirst;
     }
 
-    public NodoUsuario getpLast() {
+    public NodoRelacion getpLast() {
         return pLast;
     }
 
-    public void setpLast(NodoUsuario pLast) {
+    public void setpLast(NodoRelacion pLast) {
         this.pLast = pLast;
     }
 
@@ -59,22 +52,18 @@ public class ListaUsuario {
         this.size = size;
     }
     
-    
-    //funciones originales
-    
-// Pregunta si la condicion pFirts == null se cumple, si se cumple retorna true si no false    
     public boolean EsVacio(){
         return pFirst == null;
     }
     
-    public void InsertarFinal(String ID, String usuario){
-        NodoUsuario nuevoNodo = new NodoUsuario(ID, usuario);
+    public void InsertarAlFinal(String IdUser1, String IdUser2, String tiempoRelacion){
+        NodoRelacion nuevoNodo = new NodoRelacion(IdUser1, IdUser2, tiempoRelacion);
         
         if (EsVacio()){
             pFirst = nuevoNodo;
             pLast = nuevoNodo;
         } else{
-            NodoUsuario aux = pLast;
+            NodoRelacion aux = pLast;
             aux.setpNext(nuevoNodo);
             pLast = nuevoNodo;
         }
@@ -85,10 +74,11 @@ public class ListaUsuario {
     public void Imprimir(){
         
         if (!EsVacio()){
-            NodoUsuario aux = pFirst;
+            NodoRelacion aux = pFirst;
             for (int i = 0; i < size; i++) {
-                System.out.print(aux.getID() + " ");
-                System.out.println(aux.getUsuario() + " ");
+                System.out.print(aux.getIdUser1() + " ");
+                System.out.print(aux.getIdUser2() + " ");
+                System.out.println(aux.getTiempoRelacion() + " ");
                 aux = aux.getpNext();
                 
             }
@@ -106,13 +96,13 @@ public class ListaUsuario {
         }
     }
     
-    public void mostrar_elementos(){
+        public void mostrar_elementos(){
         String final_msg = "";
         if (!EsVacio()){
-            NodoUsuario aux = pFirst;
+            NodoRelacion aux = pFirst;
             
             for (int i = 0; i < size; i++) {
-                final_msg = final_msg + "ID: " + aux.getID() + "\n" + aux.getUsuario() + "\n";
+                final_msg = final_msg + "ID Usuario 1: " + aux.getIdUser1() + ",   " + "Id Usuario 2: " + aux.getIdUser2() + ",   " + "Tiempo de Relacion: " + aux.getTiempoRelacion() + "\n";
                 aux = aux.getpNext();
                 
             }
@@ -122,48 +112,78 @@ public class ListaUsuario {
         }
         
     }
-    
-    public String intToId(int target){
+        
+    public String buscarArista1(int target){
         if (!EsVacio()){
             int contador = 0;
-            NodoUsuario aux = pFirst;
+            NodoRelacion aux = pFirst;
             for (int i = 0; i < size; i++) {
-                if(contador == target){
-                    String ID = aux.getID();
-                    return ID;
-                }else{
-                    contador ++;
-                    aux = aux.getpNext();
-                }
-                
-                
-            }
-        }else{
-            ;
-        }
-        return "Lista vacia";
-    }
-    
-    public String idToInt(String ID){
-        if (!EsVacio()){
-            int contador = 0;
-            NodoUsuario aux = pFirst;
-            for (int i = 0; i < size; i++) {
-                if(aux.getID().equals(ID)){                
-                    String indice = Integer.toString(contador);
-                    return indice;
+                if (contador == target){
+                    return aux.getIdUser1();
                 }else{
                     contador ++;
                     aux = aux.getpNext();
                 }
                 
             }
+        
         }else{
             ;
- 
         }
         return "Lista vacia";
     }
+    
+    public String buscarArista2(int target){
+        if (!EsVacio()){
+            int contador = 0;
+            NodoRelacion aux = pFirst;
+            for (int i = 0; i < size; i++) {
+                if (contador == target){
+                    return aux.getIdUser2();
+                }else{
+                    contador ++;
+                    aux = aux.getpNext();
+                }
+                
+            }
+        
+        }else{
+            ;
+        }
+        return "Lista vacia";
+    }
+    
+    public String buscarTiempoRelacion(int target){
+        if (!EsVacio()){
+            int contador = 0;
+            NodoRelacion aux = pFirst;
+            for (int i = 0; i < size; i++) {
+                if (contador == target){
+                    return aux.getTiempoRelacion();
+                }else{
+                    contador ++;
+                    aux = aux.getpNext();
+                }
+                
+            }
+        
+        }else{
+            ;
+        }
+        return "Lista vacia";
+    }
+        
+        
+    
+    //
+    
+        
+        
+    
+    
+    
+    
+    
     
     
     
